@@ -10,7 +10,7 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
-    path('api/auth/', include('authentication.urls')),
+    path('api/auth/', include('colab_api.urls')),
     path('api/auth/', include('rest_framework.urls')),
 ]
 

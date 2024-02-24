@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
-    "authentication.apps.AuthenticationConfig",
+    "colab_api.apps.ColabApiConfig",
     "rest_framework",
     "rest_framework.authtoken",
     "wagtail.contrib.forms",
@@ -90,7 +90,7 @@ AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by email
+    # `allauth` specific colab_api methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -189,7 +189,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-AUTH_USER_MODEL = 'authentication.Profile'
+AUTH_USER_MODEL = 'colab_api.Profile'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
