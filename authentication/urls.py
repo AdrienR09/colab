@@ -10,7 +10,7 @@ from .views import email_confirm_redirect, password_reset_confirm_redirect
 from dj_rest_auth.registration.views import RegisterView
 from dj_rest_auth.views import LoginView, LogoutView, UserDetailsView
 from django.urls import path
-from .views import ProfileDetail, ProfileList, ItemDetail, ItemList, ProfileItemList, ItemCreate
+from .views import ProfileDetail, ProfileList, ItemDetail, ItemCreateOrList
 
 urlpatterns = [
     path("register/", RegisterView.as_view(), name="rest_register"),
@@ -28,10 +28,8 @@ urlpatterns = [
         name="password_reset_confirm",
     ),
     path("password/reset/confirm/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path('profile/list/', ProfileList.as_view()),
+    path('profile/', ProfileList.as_view()),
     path('profile/<int:pk>/', ProfileDetail.as_view()),
-    path('profile/<int:pk>/item-list/', ProfileItemList.as_view()),
-    path('item/list/', ItemList.as_view()),
     path('item/<int:pk>/', ItemDetail.as_view()),
-    path('item/', ItemCreate.as_view()),
+    path('item/', ItemCreateOrList.as_view()),
 ]

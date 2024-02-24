@@ -38,32 +38,16 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
     permission_classes = [CustomPermissions]
 
-class ProfileItemList(APIView):
-
-    def get(self, request, pk, format=None):
-        items = Item.objects.filter(profile=Profile.objects.get(pk=pk)).all()
-        serializer = ItemSerializer(items, many=True)
-        return Response(serializer.data)
-
-class ItemList(generics.ListAPIView):
-
-    queryset = Item.objects.all()
-    serializer_class = ItemSerializer
-    permission_classes = [CustomPermissions]
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return self.list(request, *args, **kwargs)
-        else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-
 class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     permission_classes = [CustomPermissions]
 
-class ItemCreate(generics.CreateAPIView):
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+class ItemCreateOrList(generics.CreateAPIView):
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
@@ -71,3 +55,16 @@ class ItemCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user)
+
+    def get(self, request, format=None):
+        if "profile" in request.GET.keys():
+            try:
+                items = Item.objects.filter(profile=Profile.objects.get(pk=int(request.GET["profile"]))).all()
+                serializer = ItemSerializer(items, many=True)
+                return Response(serializer.data)
+            except:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            items = Item.objects.all()
+            serializer = ItemSerializer(items, many=True)
+            return Response(serializer.data)
