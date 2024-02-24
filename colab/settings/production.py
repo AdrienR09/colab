@@ -14,7 +14,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECRET_KEY = 'zaj=iz3!w_469o1u0=(knxenr+*)+=4rojj=g+s#y*)$$g8#c)'#os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['supq4170.odns.fr', 'https']
+ALLOWED_HOSTS = ['vite-ma-table.com', 'https']
 
 DATABASES = {
     'default': {
