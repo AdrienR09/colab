@@ -126,3 +126,5 @@ dmypy.json
 **/__init__.py
 .dockerignore
 Dockerfile
+
+db.sqlite3
