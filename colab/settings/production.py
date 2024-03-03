@@ -1,7 +1,7 @@
 from .base import *
 import dj_database_url
 
-DEBUG = False
+DEBUG = True
 
 try:
     from .local import *
@@ -14,7 +14,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECRET_KEY = 'zaj=iz3!w_469o1u0=(knxenr+*)+=4rojj=g+s#y*)$$g8#c)'#os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['vite-ma-table.com', 'https']
+ALLOWED_HOSTS = ['vite-ma-table.com', 'www.vite-ma-table.com', 'https']
 
 DATABASES = {
     'default': {
@@ -29,5 +29,11 @@ DATABASES = {
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SECURE_SSL_REDIRECT = True
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "colab/media")
+MEDIA_URL = 'media/'
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "colab/static")
+STATIC_URL = "/static/"

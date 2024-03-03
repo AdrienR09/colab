@@ -1,0 +1,16 @@
+{% load account %}
+{% load i18n %}
+Bienvenue chez Raizo.fr !
+
+C'est avec une grande joie que nous vous souhaitons la bienvenue sur notre plateforme, dédiée à faciliter la vie des techniciens du cinéma et de l'audiovisuel comme vous.
+Chaque jour, vous relevez des défis uniques pour créer des moments magiques sur grand écran, et nous sommes honorés de vous soutenir dans cette aventure.
+Pour que Raizo.fr puisse vraiment briller, nous comptons sur vous. Chaque mois, attendez-vous à recevoir notre rappel par e-mail pour mettre à jour vos disponibilités.
+De plus, votre voix compte énormément : en parlant de Raizo.fr et en contribuant à enrichir notre base de données, vous jouez un rôle crucial dans le succès de notre communauté en ligne.
+Ensemble, nous pouvons faire de Raizo.fr le lieu incontournable pour les techniciens du cinéma et de l'audiovisuel. Merci de faire partie de cette aventure avec nous.
+
+Afin d'activer votre compte, confirmez votre mail en cliquant sur le lien suivant :
+{{ activate_url }}
+
+Bienvenue chez Raizo.fr !
+
+Amicalement, L'équipe Raizo.fr

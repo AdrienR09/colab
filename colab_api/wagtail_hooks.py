@@ -4,9 +4,13 @@ from .models import Profile, Item
 
 class ProfileViewSet(SnippetViewSet):
     model = Profile
+    list_display = ("first_name", "last_name", "email")
+    search_fields = ("first_name", "last_name", "email")
 
 class ItemViewSet(SnippetViewSet):
     model = Item
+    list_display = ("profile", "title", "type")
+    search_fields = ("profile", "title", "type")
 
 class AuthenticationViewSetGroup(SnippetViewSetGroup):
     items = (ProfileViewSet, ItemViewSet)

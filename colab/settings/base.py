@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
     "dj_rest_auth",
     "dj_rest_auth.registration",
 ]
@@ -95,11 +96,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 WSGI_APPLICATION = "colab.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -161,6 +157,8 @@ MEDIA_URL = "/media/"
 # Wagtail settings
 SITE_ID = 1
 WAGTAIL_SITE_NAME = "colab"
+SITE_URL = "http://www.suka-blyat.com"
+SITE_NAME = "www.suka-blyat.com"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
@@ -172,25 +170,46 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "http://example.com"
+WAGTAILADMIN_BASE_URL = "http://suka-blyat.com"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
+        #"rest_framework.authentication.SessionAuthentication",
+        #"rest_framework.authentication.BasicAuthentication",
     ]
 }
 
-AUTH_USER_MODEL = 'colab_api.Profile'
-
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 30
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 180
 
 # <EMAIL_CONFIRM_REDIRECT_BASE_URL>/<key>
 EMAIL_CONFIRM_REDIRECT_BASE_URL = \
-    "http://localhost:3000/email/confirm/"
+    "www.vite-ma-table.com/email/confirm/"
 
 # <PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL>/<uidb64>/<token>/
 PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL = \
-    "http://localhost:3000/password-reset/confirm/"
+    "www.vite-ma-table.com/password-reset/confirm/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.vite-ma-table.com'
+EMAIL_PORT = 26
+EMAIL_USE_TLS = False
+EMAIL_HOST_PASSWORD = 'tWe;ErHj)LO+'
+EMAIL_HOST_USER = 'automatic@vite-ma-table.com'
+DEFAULT_FROM_EMAIL = 'automatic@vite-ma-table.com'
+
+AUTH_USER_MODEL = 'colab_api.Profile'
+REST_AUTH = {
+    'REGISTER_SERIALIZER': "colab_api.serializers.CustomRegisterSerializer",
+}

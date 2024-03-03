@@ -22,10 +22,3 @@ try:
     from .local import *
 except ImportError:
     pass
-
-#EMAIL_HOST = "<your email host>"                    # smtp-relay.sendinblue.com
-#EMAIL_USE_TLS = False                               # False
-#EMAIL_PORT = "<your email port>"                    # 587
-#EMAIL_HOST_USER = "<your email user>"               # your email address
-#EMAIL_HOST_PASSWORD = "<your email password>"       # your password
-#DEFAULT_FROM_EMAIL = "<your default from email>"    # email ending with @sendinblue.com
